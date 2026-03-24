@@ -1,21 +1,1222 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="https://public-frontend-cos.metadl.com/mgx/img/favicon_atoms.ico"
-        type="image/x-icon">
-    <title>HTML Project</title>
-    <link rel="stylesheet" href="./style.css">
+    <title>QAZ AUTO RENT</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0a0a0a;
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+        }
+
+        /* HEADER */
+        header {
+            background: linear-gradient(180deg, #111 0%, #0a0a0a 100%);
+            border-bottom: 3px solid #c41e1e;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 48px;
+            letter-spacing: 6px;
+            color: #fff;
+            text-transform: uppercase;
+            line-height: 1;
+        }
+
+        .logo span {
+            color: #c41e1e;
+        }
+
+        .header-info {
+            text-align: right;
+            font-size: 13px;
+            color: #888;
+        }
+
+        .header-info a {
+            color: #c41e1e;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 18px;
+            display: block;
+            margin-top: 4px;
+        }
+
+        /* HERO */
+        .hero {
+            background: linear-gradient(135deg, #111 0%, #1a1a1a 50%, #0a0a0a 100%);
+            padding: 60px 20px;
+            text-align: center;
+            border-bottom: 1px solid #222;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(196, 30, 30, 0.03) 2px,
+                rgba(196, 30, 30, 0.03) 4px
+            );
+            pointer-events: none;
+        }
+
+        .hero h1 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 72px;
+            letter-spacing: 10px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        .hero h1 span {
+            color: #c41e1e;
+        }
+
+        .hero p {
+            font-size: 16px;
+            color: #777;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            position: relative;
+        }
+
+        .hero .line {
+            width: 80px;
+            height: 3px;
+            background: #c41e1e;
+            margin: 20px auto 0;
+            position: relative;
+        }
+
+        /* FILTER */
+        .filter-bar {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 30px 20px 10px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: #161616;
+            border: 1px solid #333;
+            color: #aaa;
+            padding: 8px 20px;
+            font-size: 13px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: #c41e1e;
+            border-color: #c41e1e;
+            color: #fff;
+        }
+
+        /* GRID */
+        .cars-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 24px;
+        }
+
+        /* CAR CARD */
+        .car-card {
+            background: #111;
+            border: 1px solid #222;
+            overflow: hidden;
+            transition: all 0.4s;
+            position: relative;
+        }
+
+        .car-card:hover {
+            border-color: #c41e1e;
+            transform: translateY(-4px);
+            box-shadow: 0 10px 40px rgba(196, 30, 30, 0.15);
+        }
+
+        .car-card .main-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+            cursor: pointer;
+            transition: transform 0.4s;
+        }
+
+        .car-card:hover .main-img {
+            transform: scale(1.03);
+        }
+
+        .car-card .card-body {
+            padding: 16px 20px;
+        }
+
+        .car-card .card-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 24px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .car-card .card-years {
+            font-size: 13px;
+            color: #666;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .car-card .colors {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 14px;
+        }
+
+        .car-card .color-dot {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            border: 2px solid #333;
+        }
+
+        .car-card .color-dot.white { background: #fff; }
+        .car-card .color-dot.black { background: #111; border-color: #555; }
+        .car-card .color-dot.blue { background: #1a5fc4; }
+        .car-card .color-dot.green { background: #1a8c3e; }
+
+        .car-card .thumbs {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 6px;
+        }
+
+        .car-card .thumb {
+            width: 100%;
+            height: 55px;
+            object-fit: cover;
+            cursor: pointer;
+            border: 1px solid #222;
+            transition: all 0.3s;
+            display: block;
+        }
+
+        .car-card .thumb:hover {
+            border-color: #c41e1e;
+            opacity: 0.85;
+        }
+
+        .car-card .thumb-label {
+            font-size: 9px;
+            color: #555;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 3px;
+        }
+
+        /* LIGHTBOX */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 40px;
+            color: #fff;
+            cursor: pointer;
+            z-index: 10001;
+            font-family: 'Bebas Neue', sans-serif;
+            letter-spacing: 2px;
+            transition: color 0.3s;
+            background: none;
+            border: none;
+        }
+
+        .lightbox-close:hover {
+            color: #c41e1e;
+        }
+
+        .lightbox-img {
+            max-width: 90vw;
+            max-height: 80vh;
+            object-fit: contain;
+            border: 2px solid #333;
+        }
+
+        .lightbox-caption {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 24px;
+            letter-spacing: 3px;
+            color: #fff;
+            margin-top: 16px;
+            text-transform: uppercase;
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 50px;
+            color: #fff;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 20px;
+            transition: color 0.3s;
+            font-family: 'Bebas Neue', sans-serif;
+            z-index: 10001;
+        }
+
+        .lightbox-nav:hover {
+            color: #c41e1e;
+        }
+
+        .lightbox-prev {
+            left: 10px;
+        }
+
+        .lightbox-next {
+            right: 10px;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #0d0d0d;
+            border-top: 3px solid #c41e1e;
+            padding: 40px 20px;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        footer .footer-logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 36px;
+            letter-spacing: 4px;
+            margin-bottom: 10px;
+        }
+
+        footer .footer-logo span {
+            color: #c41e1e;
+        }
+
+        footer p {
+            color: #555;
+            font-size: 13px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 40px;
+                letter-spacing: 4px;
+            }
+
+            .logo {
+                font-size: 32px;
+                letter-spacing: 3px;
+            }
+
+            .cars-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header-inner {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+
+            .header-info {
+                text-align: center;
+            }
+        }
+
+        /* SCROLLBAR */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #c41e1e;
+        }
+    </style>
 </head>
-
 <body>
-    <div class="container">
-        <h1>Welcome to HTML Project</h1>
-        <p>This is a basic HTML template.</p>
-    </div>
-    <script type="module" src="./script.js"></script>
-</body>
 
+    <!-- HEADER -->
+    <header>
+        <div class="header-inner">
+            <div class="logo">QAZ <span>AUTO</span> RENT</div>
+            <div class="header-info">
+                АРЕНДА АВТОМОБИЛЕЙ
+                <a href="tel:+77001234567">+7 700 123 45 67</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <div class="hero">
+        <h1>АВТОПАРК <span>АРЕНДЫ</span></h1>
+        <p>Надёжные автомобили для вашего комфорта</p>
+        <div class="line"></div>
+    </div>
+
+    <!-- FILTER -->
+    <div class="filter-bar">
+        <button class="filter-btn active" onclick="filterCars('all')">ВСЕ</button>
+        <button class="filter-btn" onclick="filterCars('hyundai')">HYUNDAI</button>
+        <button class="filter-btn" onclick="filterCars('toyota')">TOYOTA</button>
+        <button class="filter-btn" onclick="filterCars('lexus')">LEXUS</button>
+        <button class="filter-btn" onclick="filterCars('kia')">KIA</button>
+        <button class="filter-btn" onclick="filterCars('bmw')">BMW</button>
+        <button class="filter-btn" onclick="filterCars('mercedes')">MERCEDES</button>
+    </div>
+
+    <!-- CARS GRID -->
+    <div class="cars-grid" id="carsGrid">
+
+        <!-- 1. HYUNDAI ACCENT -->
+        <div class="car-card" data-brand="hyundai">
+            <img class="main-img" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/12214ef1-c1d7-4424-917f-ef8f91ab9fe6.png" alt="Hyundai Accent Front" onclick="openLightbox(0, 0)">
+            <div class="card-body">
+                <div class="card-title">HYUNDAI ACCENT</div>
+                <div class="card-years">2015–2020</div>
+                <div class="colors">
+                    <div class="color-dot white" title="Белый"></div>
+                    <div class="color-dot blue" title="Синий"></div>
+                </div>
+                <div class="thumbs">
+                    <div>
+                        <img class="thumb" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/12214ef1-c1d7-4424-917f-ef8f91ab9fe6.png" alt="Спереди" onclick="openLightbox(0, 0)">
+                        <div class="thumb-label">Спереди</div>
+                    </div>
+                    <div>
+                        <img class="thumb" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/af89e0d4-5f50-409e-ac45-f9f97c992a34.png" alt="Сзади" onclick="openLightbox(0, 1)">
+                        <div class="thumb-label">Сзади</div>
+                    </div>
+                    <div>
+                        <img class="thumb" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/f0977377-c33e-4a1b-a4f4-7fd54bd967e2.png" alt="Сбоку" onclick="openLightbox(0, 2)">
+                        <div class="thumb-label">Сбоку</div>
+                    </div>
+                    <div>
+                        <img class="thumb" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/7f8675e6-1640-4113-b3b3-55ad36e0f82b.png" alt="Салон" onclick="openLightbox(0, 3)">
+                        <div class="thumb-label">Салон</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. HYUNDAI ELANTRA 2017 -->
+        <div class="car-card" data-brand="hyundai">
+            <img class="main-img" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/37b6a3d6-791a-403e-948e-09ddfdcd33e3.png" alt="Hyundai Elantra 2017 Front" onclick="openLightbox(1, 0)">
+            <div class="card-body">
+                <div class="card-title">HYUNDAI ELANTRA</div>
+                <div class="card-years">2017–2018</div>
+                <div class="colors">
+                    <div class="color-dot white" title="Белый"></div>
+                    <div class="color-dot black" title="Чёрный"></div>
+                </div>
+                <div class="thumbs">
+                    <div>
+                        <img class="thumb" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/37b6a3d6-791a-403e-948e-09ddfdcd33e3.png" alt="Спереди" onclick="openLightbox(1, 0)">
+                        <div class="thumb-label">Спереди</div>
+                    </div>
+                    <div>
+                        <img class="thumb" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/cc3f7196-da50-4718-aa8e-37a9996ae078.png" alt="Сзади" onclick="openLightbox(1, 1)">
+                        <div class="thumb-label">Сзади</div>
+                    </div>
+                    <div>
+                        <img class="thumb" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/a1c1ebce-c516-462e-8408-c9f09710db68.png" alt="Сбоку" onclick="openLightbox(1, 2)">
+                        <div class="thumb-label">Сбоку</div>
+                    </div>
+                    <div>
+                        <img class="thumb" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/0371c24f-473c-4b6a-8bc2-a6804ae31310.png" alt="Салон" onclick="openLightbox(1, 3)">
+                        <div class="thumb-label">Салон</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. TOYOTA COROLLA -->
+        <div class="car-card" data-brand="toyota">
+            <img class="main-img" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/c4fbc660-484f-4212-a553-1a18b5dc9542.png" alt="Toyota Corolla Front" onclick="openLightbox(2, 0)">
+            <div class="card-body">
+                <div class="card-title">TOYOTA COROLLA</div>
+                <div class="card-years">2020–2023</div>
+                <div class="colors">
+                    <div class="color-dot white" title="Белый"></div>
+                </div>
+                <div class="thumbs">
+                    <div>
+                        <img class="thumb" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/c4fbc660-484f-4212-a553-1a18b5dc9542.png" alt="Спереди" onclick="openLightbox(2, 0)">
+                        <div class="thumb-label">Спереди</div>
+                    </div>
+                    <div>
+                        <img class="thumb" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/682061b1-4d5d-4ba3-909a-a5ca12232fd2.png" alt="Сзади" onclick="openLightbox(2, 1)">
+                        <div class="thumb-label">Сзади</div>
+                    </div>
+                    <div>
+                        <img class="thumb" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/075019e0-1f53-4531-a3e6-5a386968e507.png" alt="Сбоку" onclick="openLightbox(2, 2)">
+                        <div class="thumb-label">Сбоку</div>
+                    </div>
+                    <div>
+                        <img class="thumb" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/3edb88f6-0a35-4190-9787-a87118150c4d.png" alt="Салон" onclick="openLightbox(2, 3)">
+                        <div class="thumb-label">Салон</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. HYUNDAI CRETA -->
+        <div class="car-card" data-brand="hyundai">
+            <img class="main-img" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/b6e8a8b5-ec36-48fe-b223-3167339f2b55.png" alt="Hyundai Creta Front" onclick="openLightbox(3, 0)">
+            <div class="card-body">
+                <div class="card-title">HYUNDAI CRETA</div>
+                <div class="card-years">2020–2023</div>
+                <div class="colors">
+                    <div class="color-dot white" title="Белый"></div>
+                </div>
+                <div class="thumbs">
+                    <div>
+                        <img class="thumb" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/b6e8a8b5-ec36-48fe-b223-3167339f2b55.png" alt="Спереди" onclick="openLightbox(3, 0)">
+                        <div class="thumb-label">Спереди</div>
+                    </div>
+                    <div>
+                        <img class="thumb" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/8c891e65-90b8-486f-9a08-7d4f73be9da1.png" alt="Сзади" onclick="openLightbox(3, 1)">
+                        <div class="thumb-label">Сзади</div>
+                    </div>
+                    <div>
+                        <img class="thumb" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/0b18c495-374c-41bc-89e0-1732cae9f840.png" alt="Сбоку" onclick="openLightbox(3, 2)">
+                        <div class="thumb-label">Сбоку</div>
+                    </div>
+                    <div>
+                        <img class="thumb" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/fe4af636-6883-49d0-9491-38dd911101ce.png" alt="Салон" onclick="openLightbox(3, 3)">
+                        <div class="thumb-label">Салон</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. HYUNDAI ELANTRA 2021 -->
+        <div class="car-card" data-brand="hyundai">
+            <img class="main-img" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/2b47cbad-5971-4fc0-80c9-5d72bf410c7f.png" alt="Hyundai Elantra 2021 Front" onclick="openLightbox(4, 0)">
+            <div class="card-body">
+                <div class="card-title">HYUNDAI ELANTRA</div>
+                <div class="card-years">2021–2023</div>
+                <div class="colors">
+                    <div class="color-dot green" title="Зелёный"></div>
+                    <div class="color-dot black" title="Чёрный"></div>
+                    <div class="color-dot white" title="Белый"></div>
+                </div>
+                <div class="thumbs">
+                    <div>
+                        <img class="thumb" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/2b47cbad-5971-4fc0-80c9-5d72bf410c7f.png" alt="Спереди" onclick="openLightbox(4, 0)">
+                        <div class="thumb-label">Спереди</div>
+                    </div>
+                    <div>
+                        <img class="thumb" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/5d603c72-38b3-4085-aca0-6d8fb10dfebc.png" alt="Сзади" onclick="openLightbox(4, 1)">
+                        <div class="thumb-label">Сзади</div>
+                    </div>
+                    <div>
+                        <img class="thumb" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/978c1280-255f-4d44-aa96-f749780efcd0.png" alt="Сбоку" onclick="openLightbox(4, 2)">
+                        <div class="thumb-label">Сбоку</div>
+                    </div>
+                    <div>
+                        <img class="thumb" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/249245f6-7720-4396-8128-b9242043c82a.png" alt="Салон" onclick="openLightbox(4, 3)">
+                        <div class="thumb-label">Салон</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 6. TOYOTA CAMRY 50 -->
+        <div class="car-card" data-brand="toyota">
+            <img class="main-img" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/1fc82078-4304-4119-9675-82dc304ae224.png" alt="Toyota Camry 50 Front" onclick="openLightbox(5, 0)">
+            <div class="card-body">
+                <div class="card-title">TOYOTA CAMRY 50</div>
+                <div class="card-years">2012–2014</div>
+                <div class="colors">
+                    <div class="color-dot blue" title="Синий"></div>
+                    <div class="color-dot white" title="Белый"></div>
+                </div>
+                <div class="thumbs">
+                    <div>
+                        <img class="thumb" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/1fc82078-4304-4119-9675-82dc304ae224.png" alt="Спереди" onclick="openLightbox(5, 0)">
+                        <div class="thumb-label">Спереди</div>
+                    </div>
+                    <div>
+                        <img class="thumb" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/cb4cd376-9494-4a55-aaf1-bb1e1414d383.png" alt="Сзади" onclick="openLightbox(5, 1)">
+                        <div class="thumb-label">Сзади</div>
+                    </div>
+                    <div>
+                        <img class="thumb" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/d5db6727-533e-4578-836d-4c451364b3ed.png" alt="Сбоку" onclick="openLightbox(5, 2)">
+                        <div class="thumb-label">Сбоку</div>
+                    </div>
+                    <div>
+                        <img class="thumb" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/7f1427be-2dbc-46de-8362-5beed62b0d4a.png" alt="Салон" onclick="openLightbox(5, 3)">
+                        <div class="thumb-label">Салон</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 7. TOYOTA CAMRY 55 -->
+        <div class="car-card" data-brand="toyota">
+            <img class="main-img" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/b57f9d67-ebad-46d7-b361-f7ece4f07469.png" alt="Toyota Camry 55 Front" onclick="openLightbox(6, 0)">
+            <div class="card-body">
+                <div class="card-title">TOYOTA CAMRY 55</div>
+                <div class="card-years">2014–2017</div>
+                <div class="colors">
+                    <div class="color-dot white" title="Белый"></div>
+                    <div class="color-dot black" title="Чёрный"></div>
+                </div>
+                <div class="thumbs">
+                    <div>
+                        <img class="thumb" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/b57f9d67-ebad-46d7-b361-f7ece4f07469.png" alt="Спереди" onclick="openLightbox(6, 0)">
+                        <div class="thumb-label">Спереди</div>
+                    </div>
+                    <div>
+                        <img class="thumb" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/62ba91fd-d7c2-49fe-a0ae-f8e49b0a2df2.png" alt="Сзади" onclick="openLightbox(6, 1)">
+                        <div class="thumb-label">Сзади</div>
+                    </div>
+                    <div>
+                        <img class="thumb" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/337d292c-a01e-45ad-9154-170025902b92.png" alt="Сбоку" onclick="openLightbox(6, 2)">
+                        <div class="thumb-label">Сбоку</div>
+                    </div>
+                    <div>
+                        <img class="thumb" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/577169b1-e9ec-4353-a8d8-7e6b5931b29d.png" alt="Салон" onclick="openLightbox(6, 3)">
+                        <div class="thumb-label">Салон</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 8. HYUNDAI SONATA -->
+        <div class="car-card" data-brand="hyundai">
+            <img class="main-img" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/0cb6bc5c-a842-40ba-9fd8-5c1f7053e085.png" alt="Hyundai Sonata Front" onclick="openLightbox(7, 0)">
+            <div class="card-body">
+                <div class="card-title">HYUNDAI SONATA</div>
+                <div class="card-years">2020–2023</div>
+                <div class="colors">
+                    <div class="color-dot white" title="Белый"></div>
+                </div>
+                <div class="thumbs">
+                    <div>
+                        <img class="thumb" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/0cb6bc5c-a842-40ba-9fd8-5c1f7053e085.png" alt="Спереди" onclick="openLightbox(7, 0)">
+                        <div class="thumb-label">Спереди</div>
+                    </div>
+                    <div>
+                        <img class="thumb" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/943014ab-2e3b-4437-9b7d-9fe22a10f3c4.png" alt="Сзади" onclick="openLightbox(7, 1)">
+                        <div class="thumb-label">Сзади</div>
+                    </div>
+                    <div>
+                        <img class="thumb" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/0eade2a9-4901-4e33-941e-eccf67c5007d.png" alt="Сбоку" onclick="openLightbox(7, 2)">
+                        <div class="thumb-label">Сбоку</div>
+                    </div>
+                    <div>
+                        <img class="thumb" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/6216370b-8c85-4219-9480-25574f033cca.png" alt="Салон" onclick="openLightbox(7, 3)">
+                        <div class="thumb-label">Салон</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 9. LEXUS ES 250 -->
+        <div class="car-card" data-brand="lexus">
+            <img class="main-img" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/6ed75071-1a25-42ed-acc5-390a51ef2d2d.png" alt="Lexus ES 250 Front" onclick="openLightbox(8, 0)">
+            <div class="card-body">
+                <div class="card-title">LEXUS ES 250</div>
+                <div class="card-years">2013–2016</div>
+                <div class="colors">
+                    <div class="color-dot white" title="Белый"></div>
+                </div>
+                <div class="thumbs">
+                    <div>
+                        <img class="thumb" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/6ed75071-1a25-42ed-acc5-390a51ef2d2d.png" alt="Спереди" onclick="openLightbox(8, 0)">
+                        <div class="thumb-label">Спереди</div>
+                    </div>
+                    <div>
+                        <img class="thumb" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/eecc5dc7-0bce-4640-ac67-16ff4f348608.png" alt="Сзади" onclick="openLightbox(8, 1)">
+                        <div class="thumb-label">Сзади</div>
+                    </div>
+                    <div>
+                        <img class="thumb" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/2a3be02c-1053-4ed0-b01f-0af7367437e5.png" alt="Сбоку" onclick="openLightbox(8, 2)">
+                        <div class="thumb-label">Сбоку</div>
+                    </div>
+                    <div>
+                        <img class="thumb" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/eb984b14-2248-40bc-9af3-0c77d4f795d1.png" alt="Салон" onclick="openLightbox(8, 3)">
+                        <div class="thumb-label">Салон</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 10. TOYOTA CAMRY 70 -->
+        <div class="car-card" data-brand="toyota">
+            <img class="main-img" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/76dbf141-dfd8-4c11-b126-469f27b0ef2b.png" alt="Toyota Camry 70 Front" onclick="openLightbox(9, 0)">
+            <div class="card-body">
+                <div class="card-title">TOYOTA CAMRY 70</div>
+                <div class="card-years">2018–2020</div>
+                <div class="colors">
+                    <div class="color-dot white" title="Белый"></div>
+                    <div class="color-dot black" title="Чёрный"></div>
+                    <div class="color-dot blue" title="Синий"></div>
+                </div>
+                <div class="thumbs">
+                    <div>
+                        <img class="thumb" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/76dbf141-dfd8-4c11-b126-469f27b0ef2b.png" alt="Спереди" onclick="openLightbox(9, 0)">
+                        <div class="thumb-label">Спереди</div>
+                    </div>
+                    <div>
+                        <img class="thumb" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/8d83ec94-efcd-46c9-b288-810a31571975.png" alt="Сзади" onclick="openLightbox(9, 1)">
+                        <div class="thumb-label">Сзади</div>
+                    </div>
+                    <div>
+                        <img class="thumb" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/10487162-7af6-427c-95a9-8b5a5aab5cc2.png" alt="Сбоку" onclick="openLightbox(9, 2)">
+                        <div class="thumb-label">Сбоку</div>
+                    </div>
+                    <div>
+                        <img class="thumb" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/92367511-e489-43e4-bc55-b919b644e093.png" alt="Салон" onclick="openLightbox(9, 3)">
+                        <div class="thumb-label">Салон</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 11. KIA K5 -->
+        <div class="car-card" data-brand="kia">
+            <img class="main-img" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/b53d97d4-c070-41b3-8709-4b42d916914b.png" alt="KIA K5 Front" onclick="openLightbox(10, 0)">
+            <div class="card-body">
+                <div class="card-title">KIA K5</div>
+                <div class="card-years">2020–2023</div>
+                <div class="colors">
+                    <div class="color-dot white" title="Белый"></div>
+                </div>
+                <div class="thumbs">
+                    <div>
+                        <img class="thumb" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/b53d97d4-c070-41b3-8709-4b42d916914b.png" alt="Спереди" onclick="openLightbox(10, 0)">
+                        <div class="thumb-label">Спереди</div>
+                    </div>
+                    <div>
+                        <img class="thumb" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/66a11ee8-f5ad-44f9-87e9-5c41c9edba9c.png" alt="Сзади" onclick="openLightbox(10, 1)">
+                        <div class="thumb-label">Сзади</div>
+                    </div>
+                    <div>
+                        <img class="thumb" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/fe01e636-8e38-43c5-9605-4ffc14366128.png" alt="Сбоку" onclick="openLightbox(10, 2)">
+                        <div class="thumb-label">Сбоку</div>
+                    </div>
+                    <div>
+                        <img class="thumb" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/25b56c7a-3f62-4380-8885-bb89aa52e8af.png" alt="Салон" onclick="openLightbox(10, 3)">
+                        <div class="thumb-label">Салон</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 12. TOYOTA LAND CRUISER PRADO -->
+        <div class="car-card" data-brand="toyota">
+            <img class="main-img" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/4833ff6a-20c1-46e8-b7b2-87e919c10efc.png" alt="Toyota Prado Front" onclick="openLightbox(11, 0)">
+            <div class="card-body">
+                <div class="card-title">TOYOTA LAND CRUISER PRADO</div>
+                <div class="card-years">2012–2015</div>
+                <div class="colors">
+                    <div class="color-dot black" title="Чёрный"></div>
+                </div>
+                <div class="thumbs">
+                    <div>
+                        <img class="thumb" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/4833ff6a-20c1-46e8-b7b2-87e919c10efc.png" alt="Спереди" onclick="openLightbox(11, 0)">
+                        <div class="thumb-label">Спереди</div>
+                    </div>
+                    <div>
+                        <img class="thumb" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/e73416d7-e542-4f4b-ac9e-23970fc97f19.png" alt="Сзади" onclick="openLightbox(11, 1)">
+                        <div class="thumb-label">Сзади</div>
+                    </div>
+                    <div>
+                        <img class="thumb" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/1a3de30e-fdfb-47bb-a575-21c1a8b07588.png" alt="Сбоку" onclick="openLightbox(11, 2)">
+                        <div class="thumb-label">Сбоку</div>
+                    </div>
+                    <div>
+                        <img class="thumb" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/077f36d1-233d-4f0a-9d34-526696b019cb.png" alt="Салон" onclick="openLightbox(11, 3)">
+                        <div class="thumb-label">Салон</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 13. LEXUS RX 300 -->
+        <div class="car-card" data-brand="lexus">
+            <img class="main-img" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/0a33cc9b-cd09-47a2-8b65-21066e29e0bb.png" alt="Lexus RX 300 Front" onclick="openLightbox(12, 0)">
+            <div class="card-body">
+                <div class="card-title">LEXUS RX 300</div>
+                <div class="card-years">2019–2023</div>
+                <div class="colors">
+                    <div class="color-dot white" title="Белый"></div>
+                </div>
+                <div class="thumbs">
+                    <div>
+                        <img class="thumb" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/0a33cc9b-cd09-47a2-8b65-21066e29e0bb.png" alt="Спереди" onclick="openLightbox(12, 0)">
+                        <div class="thumb-label">Спереди</div>
+                    </div>
+                    <div>
+                        <img class="thumb" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/74189559-c78b-4fb4-b94f-9dc654f3aa6a.png" alt="Сзади" onclick="openLightbox(12, 1)">
+                        <div class="thumb-label">Сзади</div>
+                    </div>
+                    <div>
+                        <img class="thumb" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/9e0fb7c2-ca6f-4c11-915a-c893f0c5482e.png" alt="Сбоку" onclick="openLightbox(12, 2)">
+                        <div class="thumb-label">Сбоку</div>
+                    </div>
+                    <div>
+                        <img class="thumb" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/8e40d603-1f8c-4d47-8022-c55d8377817f.png" alt="Салон" onclick="openLightbox(12, 3)">
+                        <div class="thumb-label">Салон</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 14. BMW 530i -->
+        <div class="car-card" data-brand="bmw">
+            <img class="main-img" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/770a70ec-f8fd-4a28-8437-bfffa611c516.png" alt="BMW 530i Front" onclick="openLightbox(13, 0)">
+            <div class="card-body">
+                <div class="card-title">BMW 530i</div>
+                <div class="card-years">2018–2021</div>
+                <div class="colors">
+                    <div class="color-dot white" title="Белый"></div>
+                    <div class="color-dot black" title="Чёрный"></div>
+                </div>
+                <div class="thumbs">
+                    <div>
+                        <img class="thumb" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/770a70ec-f8fd-4a28-8437-bfffa611c516.png" alt="Спереди" onclick="openLightbox(13, 0)">
+                        <div class="thumb-label">Спереди</div>
+                    </div>
+                    <div>
+                        <img class="thumb" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/de31a111-ec45-4ab8-aa88-8ab29f98ef15.png" alt="Сзади" onclick="openLightbox(13, 1)">
+                        <div class="thumb-label">Сзади</div>
+                    </div>
+                    <div>
+                        <img class="thumb" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/227797a6-0a3b-4362-b84d-15f6acd3163e.png" alt="Сбоку" onclick="openLightbox(13, 2)">
+                        <div class="thumb-label">Сбоку</div>
+                    </div>
+                    <div>
+                        <img class="thumb" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/5b2019fb-36af-40c9-8318-312c28ee5493.png" alt="Салон" onclick="openLightbox(13, 3)">
+                        <div class="thumb-label">Салон</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 15. TOYOTA LAND CRUISER 200 -->
+        <div class="car-card" data-brand="toyota">
+            <img class="main-img" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/c5b00f1c-dab8-4c9b-9c74-70b8b65a73ce.png" alt="Toyota LC 200 Front" onclick="openLightbox(14, 0)">
+            <div class="card-body">
+                <div class="card-title">TOYOTA LAND CRUISER 200</div>
+                <div class="card-years">2013–2015</div>
+                <div class="colors">
+                    <div class="color-dot black" title="Чёрный"></div>
+                </div>
+                <div class="thumbs">
+                    <div>
+                        <img class="thumb" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/c5b00f1c-dab8-4c9b-9c74-70b8b65a73ce.png" alt="Спереди" onclick="openLightbox(14, 0)">
+                        <div class="thumb-label">Спереди</div>
+                    </div>
+                    <div>
+                        <img class="thumb" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/c88a0029-82cd-4f70-a76b-1c906f062c95.png" alt="Сзади" onclick="openLightbox(14, 1)">
+                        <div class="thumb-label">Сзади</div>
+                    </div>
+                    <div>
+                        <img class="thumb" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/acdca85d-f71e-4cdb-8772-ac073f7120ec.png" alt="Сбоку" onclick="openLightbox(14, 2)">
+                        <div class="thumb-label">Сбоку</div>
+                    </div>
+                    <div>
+                        <img class="thumb" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/188216c7-3ca7-4003-b72d-a83c5a5e0473.png" alt="Салон" onclick="openLightbox(14, 3)">
+                        <div class="thumb-label">Салон</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 16. LEXUS LX 570 -->
+        <div class="car-card" data-brand="lexus">
+            <img class="main-img" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/e0750f6a-316a-4acf-9782-9e4d5f588577.png" alt="Lexus LX 570 Front" onclick="openLightbox(15, 0)">
+            <div class="card-body">
+                <div class="card-title">LEXUS LX 570</div>
+                <div class="card-years">2011–2015</div>
+                <div class="colors">
+                    <div class="color-dot white" title="Белый"></div>
+                </div>
+                <div class="thumbs">
+                    <div>
+                        <img class="thumb" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/e0750f6a-316a-4acf-9782-9e4d5f588577.png" alt="Спереди" onclick="openLightbox(15, 0)">
+                        <div class="thumb-label">Спереди</div>
+                    </div>
+                    <div>
+                        <img class="thumb" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/382ac622-246f-4126-a91d-f557de0627c2.png" alt="Сзади" onclick="openLightbox(15, 1)">
+                        <div class="thumb-label">Сзади</div>
+                    </div>
+                    <div>
+                        <img class="thumb" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/7a5a3ea6-d983-485b-9b7c-497339081c78.png" alt="Сбоку" onclick="openLightbox(15, 2)">
+                        <div class="thumb-label">Сбоку</div>
+                    </div>
+                    <div>
+                        <img class="thumb" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/7a4a7917-ccc0-46e5-a1e3-61eabad91849.png" alt="Салон" onclick="openLightbox(15, 3)">
+                        <div class="thumb-label">Салон</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 17. MERCEDES BENZ G 55 -->
+        <div class="car-card" data-brand="mercedes">
+            <img class="main-img" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/190b688e-eeb0-401f-8084-9a637f741899.png" alt="Mercedes G55 Front" onclick="openLightbox(16, 0)">
+            <div class="card-body">
+                <div class="card-title">MERCEDES BENZ G 55</div>
+                <div class="card-years">2007–2010</div>
+                <div class="colors">
+                    <div class="color-dot black" title="Чёрный"></div>
+                </div>
+                <div class="thumbs">
+                    <div>
+                        <img class="thumb" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/190b688e-eeb0-401f-8084-9a637f741899.png" alt="Спереди" onclick="openLightbox(16, 0)">
+                        <div class="thumb-label">Спереди</div>
+                    </div>
+                    <div>
+                        <img class="thumb" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/857bd495-f3a0-4e5c-bf33-5202de7c3189.png" alt="Сзади" onclick="openLightbox(16, 1)">
+                        <div class="thumb-label">Сзади</div>
+                    </div>
+                    <div>
+                        <img class="thumb" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/f1177274-e830-4156-8db7-c177ce003faa.png" alt="Сбоку" onclick="openLightbox(16, 2)">
+                        <div class="thumb-label">Сбоку</div>
+                    </div>
+                    <div>
+                        <img class="thumb" src="https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/562c503b-d9f3-46c1-a123-b34bc3e44e8a.png" alt="Салон" onclick="openLightbox(16, 3)">
+                        <div class="thumb-label">Салон</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-logo">QAZ <span>AUTO</span> RENT</div>
+        <p>© 2024 QAZ AUTO RENT. Все права защищены.</p>
+        <p style="margin-top: 8px; color: #444;">Аренда автомобилей в Казахстане</p>
+    </footer>
+
+    <!-- LIGHTBOX -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+        <button class="lightbox-nav lightbox-prev" onclick="navLightbox(-1)">‹</button>
+        <button class="lightbox-nav lightbox-next" onclick="navLightbox(1)">›</button>
+        <img class="lightbox-img" id="lightboxImg" src="" alt="">
+        <div class="lightbox-caption" id="lightboxCaption"></div>
+    </div>
+
+    <script>
+        // Car data for lightbox
+        const carsData = [
+            {
+                name: "HYUNDAI ACCENT (2015–2020)",
+                images: [
+                    "https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/12214ef1-c1d7-4424-917f-ef8f91ab9fe6.png",
+                    "https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/af89e0d4-5f50-409e-ac45-f9f97c992a34.png",
+                    "https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/f0977377-c33e-4a1b-a4f4-7fd54bd967e2.png",
+                    "https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/7f8675e6-1640-4113-b3b3-55ad36e0f82b.png"
+                ],
+                labels: ["Спереди", "Сзади", "Сбоку", "Салон"]
+            },
+            {
+                name: "HYUNDAI ELANTRA (2017–2018)",
+                images: [
+                    "https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/37b6a3d6-791a-403e-948e-09ddfdcd33e3.png",
+                    "https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/cc3f7196-da50-4718-aa8e-37a9996ae078.png",
+                    "https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/a1c1ebce-c516-462e-8408-c9f09710db68.png",
+                    "https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/0371c24f-473c-4b6a-8bc2-a6804ae31310.png"
+                ],
+                labels: ["Спереди", "Сзади", "Сбоку", "Салон"]
+            },
+            {
+                name: "TOYOTA COROLLA (2020–2023)",
+                images: [
+                    "https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/c4fbc660-484f-4212-a553-1a18b5dc9542.png",
+                    "https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/682061b1-4d5d-4ba3-909a-a5ca12232fd2.png",
+                    "https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/075019e0-1f53-4531-a3e6-5a386968e507.png",
+                    "https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/3edb88f6-0a35-4190-9787-a87118150c4d.png"
+                ],
+                labels: ["Спереди", "Сзади", "Сбоку", "Салон"]
+            },
+            {
+                name: "HYUNDAI CRETA (2020–2023)",
+                images: [
+                    "https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/b6e8a8b5-ec36-48fe-b223-3167339f2b55.png",
+                    "https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/8c891e65-90b8-486f-9a08-7d4f73be9da1.png",
+                    "https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/0b18c495-374c-41bc-89e0-1732cae9f840.png",
+                    "https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/fe4af636-6883-49d0-9491-38dd911101ce.png"
+                ],
+                labels: ["Спереди", "Сзади", "Сбоку", "Салон"]
+            },
+            {
+                name: "HYUNDAI ELANTRA (2021–2023)",
+                images: [
+                    "https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/2b47cbad-5971-4fc0-80c9-5d72bf410c7f.png",
+                    "https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/5d603c72-38b3-4085-aca0-6d8fb10dfebc.png",
+                    "https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/978c1280-255f-4d44-aa96-f749780efcd0.png",
+                    "https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/249245f6-7720-4396-8128-b9242043c82a.png"
+                ],
+                labels: ["Спереди", "Сзади", "Сбоку", "Салон"]
+            },
+            {
+                name: "TOYOTA CAMRY 50 (2012–2014)",
+                images: [
+                    "https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/1fc82078-4304-4119-9675-82dc304ae224.png",
+                    "https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/cb4cd376-9494-4a55-aaf1-bb1e1414d383.png",
+                    "https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/d5db6727-533e-4578-836d-4c451364b3ed.png",
+                    "https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/7f1427be-2dbc-46de-8362-5beed62b0d4a.png"
+                ],
+                labels: ["Спереди", "Сзади", "Сбоку", "Салон"]
+            },
+            {
+                name: "TOYOTA CAMRY 55 (2014–2017)",
+                images: [
+                    "https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/b57f9d67-ebad-46d7-b361-f7ece4f07469.png",
+                    "https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/62ba91fd-d7c2-49fe-a0ae-f8e49b0a2df2.png",
+                    "https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/337d292c-a01e-45ad-9154-170025902b92.png",
+                    "https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/577169b1-e9ec-4353-a8d8-7e6b5931b29d.png"
+                ],
+                labels: ["Спереди", "Сзади", "Сбоку", "Салон"]
+            },
+            {
+                name: "HYUNDAI SONATA (2020–2023)",
+                images: [
+                    "https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/0cb6bc5c-a842-40ba-9fd8-5c1f7053e085.png",
+                    "https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/943014ab-2e3b-4437-9b7d-9fe22a10f3c4.png",
+                    "https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/0eade2a9-4901-4e33-941e-eccf67c5007d.png",
+                    "https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/6216370b-8c85-4219-9480-25574f033cca.png"
+                ],
+                labels: ["Спереди", "Сзади", "Сбоку", "Салон"]
+            },
+            {
+                name: "LEXUS ES 250 (2013–2016)",
+                images: [
+                    "https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/6ed75071-1a25-42ed-acc5-390a51ef2d2d.png",
+                    "https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/eecc5dc7-0bce-4640-ac67-16ff4f348608.png",
+                    "https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/2a3be02c-1053-4ed0-b01f-0af7367437e5.png",
+                    "https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/eb984b14-2248-40bc-9af3-0c77d4f795d1.png"
+                ],
+                labels: ["Спереди", "Сзади", "Сбоку", "Салон"]
+            },
+            {
+                name: "TOYOTA CAMRY 70 (2018–2020)",
+                images: [
+                    "https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/76dbf141-dfd8-4c11-b126-469f27b0ef2b.png",
+                    "https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/8d83ec94-efcd-46c9-b288-810a31571975.png",
+                    "https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/10487162-7af6-427c-95a9-8b5a5aab5cc2.png",
+                    "https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/92367511-e489-43e4-bc55-b919b644e093.png"
+                ],
+                labels: ["Спереди", "Сзади", "Сбоку", "Салон"]
+            },
+            {
+                name: "KIA K5 (2020–2023)",
+                images: [
+                    "https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/b53d97d4-c070-41b3-8709-4b42d916914b.png",
+                    "https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/66a11ee8-f5ad-44f9-87e9-5c41c9edba9c.png",
+                    "https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/fe01e636-8e38-43c5-9605-4ffc14366128.png",
+                    "https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/25b56c7a-3f62-4380-8885-bb89aa52e8af.png"
+                ],
+                labels: ["Спереди", "Сзади", "Сбоку", "Салон"]
+            },
+            {
+                name: "TOYOTA LAND CRUISER PRADO (2012–2015)",
+                images: [
+                    "https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/4833ff6a-20c1-46e8-b7b2-87e919c10efc.png",
+                    "https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/e73416d7-e542-4f4b-ac9e-23970fc97f19.png",
+                    "https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/1a3de30e-fdfb-47bb-a575-21c1a8b07588.png",
+                    "https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/077f36d1-233d-4f0a-9d34-526696b019cb.png"
+                ],
+                labels: ["Спереди", "Сзади", "Сбоку", "Салон"]
+            },
+            {
+                name: "LEXUS RX 300 (2019–2023)",
+                images: [
+                    "https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/0a33cc9b-cd09-47a2-8b65-21066e29e0bb.png",
+                    "https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/74189559-c78b-4fb4-b94f-9dc654f3aa6a.png",
+                    "https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/9e0fb7c2-ca6f-4c11-915a-c893f0c5482e.png",
+                    "https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/8e40d603-1f8c-4d47-8022-c55d8377817f.png"
+                ],
+                labels: ["Спереди", "Сзади", "Сбоку", "Салон"]
+            },
+            {
+                name: "BMW 530i (2018–2021)",
+                images: [
+                    "https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/770a70ec-f8fd-4a28-8437-bfffa611c516.png",
+                    "https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/de31a111-ec45-4ab8-aa88-8ab29f98ef15.png",
+                    "https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/227797a6-0a3b-4362-b84d-15f6acd3163e.png",
+                    "https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/5b2019fb-36af-40c9-8318-312c28ee5493.png"
+                ],
+                labels: ["Спереди", "Сзади", "Сбоку", "Салон"]
+            },
+            {
+                name: "TOYOTA LAND CRUISER 200 (2013–2015)",
+                images: [
+                    "https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/c5b00f1c-dab8-4c9b-9c74-70b8b65a73ce.png",
+                    "https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/c88a0029-82cd-4f70-a76b-1c906f062c95.png",
+                    "https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/acdca85d-f71e-4cdb-8772-ac073f7120ec.png",
+                    "https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/188216c7-3ca7-4003-b72d-a83c5a5e0473.png"
+                ],
+                labels: ["Спереди", "Сзади", "Сбоку", "Салон"]
+            },
+            {
+                name: "LEXUS LX 570 (2011–2015)",
+                images: [
+                    "https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/e0750f6a-316a-4acf-9782-9e4d5f588577.png",
+                    "https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/382ac622-246f-4126-a91d-f557de0627c2.png",
+                    "https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/7a5a3ea6-d983-485b-9b7c-497339081c78.png",
+                    "https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/7a4a7917-ccc0-46e5-a1e3-61eabad91849.png"
+                ],
+                labels: ["Спереди", "Сзади", "Сбоку", "Салон"]
+            },
+            {
+                name: "MERCEDES BENZ G 55 (2007–2010)",
+                images: [
+                    "https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/190b688e-eeb0-401f-8084-9a637f741899.png",
+                    "https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/857bd495-f3a0-4e5c-bf33-5202de7c3189.png",
+                    "https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/f1177274-e830-4156-8db7-c177ce003faa.png",
+                    "https://mgx-backend-cdn.metadl.com/generate/images/1051846/2026-03-24/562c503b-d9f3-46c1-a123-b34bc3e44e8a.png"
+                ],
+                labels: ["Спереди", "Сзади", "Сбоку", "Салон"]
+            }
+        ];
+
+        let currentCar = 0;
+        let currentImage = 0;
+
+        function openLightbox(carIndex, imgIndex) {
+            currentCar = carIndex;
+            currentImage = imgIndex;
+            updateLightbox();
+            document.getElementById('lightbox').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function updateLightbox() {
+            const car = carsData[currentCar];
+            document.getElementById('lightboxImg').src = car.images[currentImage];
+            document.getElementById('lightboxCaption').textContent = car.name + ' — ' + car.labels[currentImage];
+        }
+
+        function navLightbox(dir) {
+            const car = carsData[currentCar];
+            currentImage += dir;
+            if (currentImage < 0) currentImage = car.images.length - 1;
+            if (currentImage >= car.images.length) currentImage = 0;
+            updateLightbox();
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            const lightbox = document.getElementById('lightbox');
+            if (!lightbox.classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') navLightbox(-1);
+            if (e.key === 'ArrowRight') navLightbox(1);
+        });
+
+        // Close on background click
+        document.getElementById('lightbox').addEventListener('click', function(e) {
+            if (e.target === this) closeLightbox();
+        });
+
+        // Filter
+        function filterCars(brand) {
+            const cards = document.querySelectorAll('.car-card');
+            const btns = document.querySelectorAll('.filter-btn');
+
+            btns.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            cards.forEach(card => {
+                if (brand === 'all' || card.dataset.brand === brand) {
+                    card.style.display = '';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
 </html>
